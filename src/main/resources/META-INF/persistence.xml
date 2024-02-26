@@ -27,7 +27,7 @@
             <property name="jakarta.persistence.jdbc.password" value="" />
 
             <!-- Automáticamente, genera el esquema de la base de datos -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" /> <!-- none, create, drop-and-create, drop  -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="none" /> <!-- none, create, drop-and-create, drop  -->
 
             <!-- Muestra por pantalla las sentencias SQL -->
             <property name="hibernate.show_sql" value="true" />

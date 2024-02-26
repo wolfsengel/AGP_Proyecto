@@ -11,7 +11,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private int id;
+    private long id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -28,7 +28,22 @@ public class Customer {
     public Customer() {
     }
 
-    public int getId() {
+    public Customer(String name, String password, Date lastUpdated, Date registrationDate) {
+        this.name = name;
+        this.password = password;
+        this.lastUpdated = lastUpdated;
+        this.registrationDate = registrationDate;
+    }
+
+    public Customer(long id, String name, String password, Date lastUpdated, Date registrationDate) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.lastUpdated = lastUpdated;
+        this.registrationDate = registrationDate;
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -66,6 +81,17 @@ public class Customer {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", lastUpdated=" + lastUpdated +
+                ", registrationDate=" + registrationDate +
+                '}';
     }
 }
 
