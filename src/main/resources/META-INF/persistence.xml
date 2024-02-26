@@ -10,22 +10,24 @@
             Proyecto para Acceso a Datos
         </description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!--        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-
-        <!-- Clases que se van a persistir -->
-        <!--        <class>com.pepinho.ad.orm.Usuario</class>     -->
+        <!-- Clases que se van a persistir-->
+        <class>agp.sanclemen.agp_proyecto.model.Cart</class>
+        <class>agp.sanclemen.agp_proyecto.model.CartItem</class>
+        <class>agp.sanclemen.agp_proyecto.model.Product</class>
+        <class>agp.sanclemen.agp_proyecto.model.Customer</class>
+        <class>agp.sanclemen.agp_proyecto.model.Category</class>
 
         <!-- Propiedades de la unidad de persistencia -->
         <properties>
             <!-- Configuración de conexión a base de datos. H2 en memoria. -->
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:C:\Users\angel\IdeaProjects\AGP_Proyecto\src\main\resources\database\agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:C:\Users\angel\IdeaProjects\AGP_Proyecto\src\main\java\agp\sanclemen\agp_proyecto\database\agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />
             <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1" />-->
             <property name="jakarta.persistence.jdbc.user" value="" />
             <property name="jakarta.persistence.jdbc.password" value="" />
+
             <!-- Automáticamente, genera el esquema de la base de datos -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="create" /> <!-- none, create, drop-and-create, drop  -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" /> <!-- none, create, drop-and-create, drop  -->
 
             <!-- Muestra por pantalla las sentencias SQL -->
             <property name="hibernate.show_sql" value="true" />
