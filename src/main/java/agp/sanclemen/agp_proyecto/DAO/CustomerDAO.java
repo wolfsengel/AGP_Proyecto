@@ -35,36 +35,77 @@ public class CustomerDAO implements DAO<Customer> {
 
     @Override
     public List<Customer> getAll() {
+        try {
+            return entityManager.createQuery("from Customer").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void save(Customer customer) {
-
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(customer);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Customer customer) {
-
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(customer);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Customer customer) {
-
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(customer);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean deleteById(long id) {
+        try {
+            Customer customer = get(id);
+            delete(customer);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public List<Integer> getAllIds() {
+        try {
+            return entityManager.createQuery("select id from Customer").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void deleteAll() {
-
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.createQuery("delete from Customer").executeUpdate();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

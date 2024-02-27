@@ -1,4 +1,4 @@
-package agp.sanclemen.agp_proyecto;
+package agp.sanclemen.agp_proyecto.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

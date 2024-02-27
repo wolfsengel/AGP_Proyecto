@@ -7,4 +7,6 @@ module agp.sanclemen.agp_proyecto {
     opens agp.sanclemen.agp_proyecto to javafx.fxml;
     opens agp.sanclemen.agp_proyecto.model to org.hibernate.orm.core; // Abrir paquete del modelo a Hibernate
     exports agp.sanclemen.agp_proyecto;
+    exports agp.sanclemen.agp_proyecto.view;
+    opens agp.sanclemen.agp_proyecto.view to javafx.fxml;
 }

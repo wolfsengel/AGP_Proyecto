@@ -5,7 +5,8 @@ import jakarta.persistence.Persistence;
 
 public class EntityManagerFactorySingleton {
 
-    private static volatile EntityManagerFactory instance; //TODO: fiinal? ivan dice cosas investigar
+    private static volatile EntityManagerFactory instance;
+    private static final String PERSISTENCE_UNIT_NAME = "AGP_PROYECTO";
 
     // Private constructor to prevent instantiation from outside
     private EntityManagerFactorySingleton() {}
@@ -14,7 +15,7 @@ public class EntityManagerFactorySingleton {
         if (instance == null) {
             synchronized (EntityManagerFactorySingleton.class) {
                 if (instance == null) {
-                    instance = Persistence.createEntityManagerFactory("AGP_PROYECTO");
+                    instance = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
                 }
             }
         }
