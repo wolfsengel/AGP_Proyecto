@@ -17,7 +17,7 @@ public class Category {
     @Column(name = "DESCRIPTION")
     private String description;
 
-public Category() {
+    public Category() {
     }
 
     public int getId() {

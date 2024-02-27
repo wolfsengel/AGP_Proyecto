@@ -5,7 +5,7 @@ import jakarta.persistence.Persistence;
 
 public class EntityManagerFactorySingleton {
 
-    private static volatile EntityManagerFactory instance;
+    private static volatile EntityManagerFactory instance; //TODO: fiinal? ivan dice cosas investigar
 
     // Private constructor to prevent instantiation from outside
     private EntityManagerFactorySingleton() {}
