@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="agp.sanclemen.agp_proyecto.view.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Manager">
+      <BorderPane>
+          <top>
+              <ToolBar BorderPane.alignment="CENTER">
+                  <items>
+                      <Button mnemonicParsing="false" text="Add" />
+                      <Button mnemonicParsing="false" text="Edit" />
+                      <Button mnemonicParsing="false" text="Delete" />
+                  </items>
+              </ToolBar>
+            </top>
+          <center>
+              <TableView fx:id="clientTable" BorderPane.alignment="CENTER">
+                  <columns>
+                      <TableColumn fx:id="id" prefWidth="33.0" text="ID" />
+                      <TableColumn fx:id="name" prefWidth="75.0" text="NAME" />
+                      <TableColumn fx:id="description" prefWidth="200.0" text="DESCRIPTION" />
+                      <TableColumn fx:id="price" prefWidth="75.0" text="PRICE" />
+                      <TableColumn fx:id="stock" prefWidth="75.0" text="STOCK" />
+                      <TableColumn fx:id="category" prefWidth="133.0" text="CATEGORY" />
+                  </columns>
+              </TableView>
+          </center>
+          <bottom>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <children>
+                <Label text="Total: " />
+                <Label fx:id="total" text="0" />
+              </children>
+            </HBox>
+          </bottom>
+      </BorderPane>
+    </Tab>
+    <Tab text="Client">
+        <BorderPane>
+            <top>
+                <ToolBar BorderPane.alignment="CENTER">
+                    <items>
+                        <Label text="Cart: " />
+                        <ComboBox fx:id="cart" prefWidth="150.0" promptText="Cart" />
+                        <Label text="Date: "/>
+                        <Label fx:id="date" text="00/00/0000"/>
+                    </items>
+                </ToolBar>
+            </top>
+            <left>
+                <ListView fx:id="productsList" BorderPane.alignment="CENTER"/>
+            </left>
+            <center>
+                <ListView fx:id="buyList" BorderPane.alignment="CENTER" />
+            </center>
+            <bottom>
+                <ToolBar BorderPane.alignment="CENTER">
+                    <items>
+                        <Button mnemonicParsing="false" text="Add to the cart" />
+                    </items>
+                </ToolBar>
+            </bottom>
+        </BorderPane>
+    </Tab>
+  </tabs>
+</TabPane>
