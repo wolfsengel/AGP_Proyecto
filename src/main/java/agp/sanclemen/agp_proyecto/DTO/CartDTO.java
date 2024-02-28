@@ -1,32 +1,32 @@
 package agp.sanclemen.agp_proyecto.DTO;
 
 public class CartDTO {
-    private Long id;
-    private Long customerId;
+    private long id;
+    private long customerId;
     private String name;
 
     public CartDTO() {
     }
 
-    public CartDTO(Long id, Long customerId, String name) {
+    public CartDTO(int id, int customerId, String name) {
         this.id = id;
         this.customerId = customerId;
         this.name = name;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Long getCustomerId() {
+    public long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 

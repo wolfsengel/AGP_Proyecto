@@ -4,7 +4,6 @@ import agp.sanclemen.agp_proyecto.model.Customer;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
-import java.sql.*;
 
 /*
 *CREATE TABLE IF NOT EXISTS CUSTOMER (
@@ -89,7 +88,7 @@ public class CustomerDAO implements DAO<Customer> {
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Long> getAllIds() {
         try {
             return entityManager.createQuery("select id from Customer").getResultList();
         } catch (Exception e) {

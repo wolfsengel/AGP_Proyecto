@@ -3,7 +3,7 @@ package agp.sanclemen.agp_proyecto.DTO;
 import java.util.Date;
 
 public class ProductDTO {
-    private Long id;
+    private long id;
     private String name;
     private String description;
     private double price;
@@ -14,7 +14,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, String description, double price, int stockQty, Date lastUpdated, CategoryDTO category) {
+    public ProductDTO(long id, String name, String description, double price, int stockQty, Date lastUpdated, CategoryDTO category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,11 +24,11 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -3,7 +3,7 @@ package agp.sanclemen.agp_proyecto.DTO;
 import java.util.Date;
 
 public class CustomerDTO {
-    private Long id;
+    private long id;
     private String name;
     private String password;
     private Date lastUpdated;
@@ -12,7 +12,7 @@ public class CustomerDTO {
     public CustomerDTO() {
     }
 
-    public CustomerDTO(Long id, String name, String password, Date lastUpdated, Date registrationDate) {
+    public CustomerDTO(long id, String name, String password, Date lastUpdated, Date registrationDate) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -20,11 +20,11 @@ public class CustomerDTO {
         this.registrationDate = registrationDate;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

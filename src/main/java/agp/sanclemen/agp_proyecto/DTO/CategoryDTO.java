@@ -1,24 +1,24 @@
 package agp.sanclemen.agp_proyecto.DTO;
 
 public class CategoryDTO {
-    private Long id;
+    private long id;
     private String name;
     private String description;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(Long id, String name, String description) {
+    public CategoryDTO(long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

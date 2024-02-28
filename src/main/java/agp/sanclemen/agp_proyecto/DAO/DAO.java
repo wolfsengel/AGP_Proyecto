@@ -16,7 +16,7 @@ public interface DAO<T> {
 
     public boolean deleteById(long id);
 
-    public List<Integer> getAllIds();
+    public List<Long> getAllIds();
 
     void deleteAll();
 }
