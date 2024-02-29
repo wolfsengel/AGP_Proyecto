@@ -9,19 +9,21 @@ public class ProductDTO {
     private double price;
     private int stockQty;
     private Date lastUpdated;
-    private CategoryDTO category;
+    private String categoryName;
+    private String categoryDescription;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(long id, String name, String description, double price, int stockQty, Date lastUpdated, CategoryDTO category) {
+    public ProductDTO(long id, String name, String description, double price, int stockQty, Date lastUpdated, String categoryName, String categoryDescription) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stockQty = stockQty;
         this.lastUpdated = lastUpdated;
-        this.category = category;
+        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
     }
 
     public long getId() {
@@ -72,11 +74,19 @@ public class ProductDTO {
         this.lastUpdated = lastUpdated;
     }
 
-    public CategoryDTO getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(CategoryDTO category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
 }

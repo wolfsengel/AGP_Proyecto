@@ -34,7 +34,7 @@
             <HBox alignment="CENTER" prefHeight="33.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <children>
                 <Label text="Total: " />
-                <Label fx:id="total" text="0" />
+                <Label fx:id="totalProducts" text="0" />
               </children>
             </HBox>
           </bottom>

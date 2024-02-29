@@ -1,5 +1,6 @@
 package agp.sanclemen.agp_proyecto.DAO;
 
+import agp.sanclemen.agp_proyecto.DTO.ProductDTO;
 import agp.sanclemen.agp_proyecto.model.Product;
 import jakarta.persistence.EntityManager;
 
@@ -107,5 +108,23 @@ public class ProductDAO implements DAO<Product> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<ProductDTO> getAllProducts() {
+        try {
+            // Query para todos los productos y la suma de ellos para el dto
+            return entityManager.createQuery(
+                    """
+                            select new agp.sanclemen.agp_proyecto.DTO.ProductDTO(p.id, p.name,
+                            p.description, p.price, p.stockQty,p.lastUpdated, c.name, c.description)
+                            from Product p
+                            join Category c on p.category.id = c.id
+                            group by p.id
+                        """, ProductDTO.class).getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

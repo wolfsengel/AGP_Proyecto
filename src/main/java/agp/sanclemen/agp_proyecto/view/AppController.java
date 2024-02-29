@@ -1,6 +1,7 @@
 package agp.sanclemen.agp_proyecto.view;
 
 import agp.sanclemen.agp_proyecto.DAO.*;
+import agp.sanclemen.agp_proyecto.DTO.ProductDTO;
 import agp.sanclemen.agp_proyecto.model.*;
 import agp.sanclemen.agp_proyecto.factory.EntityManagerFactorySingleton;
 import jakarta.persistence.EntityManager;
@@ -34,19 +35,23 @@ public class AppController {
     private Label dateLabel;
     // Table Stuff
     @FXML
-    private TableView<Product> productsTable;
+    private TableView<ProductDTO> productsTable;
     @FXML
-    private TableColumn<Product,Long> id;
+    private TableColumn<ProductDTO,Long> id;
     @FXML
-    private TableColumn<Product,String> name;
+    private TableColumn<ProductDTO,String> name;
     @FXML
-    private TableColumn<Product,String> description;
+    private TableColumn<ProductDTO,String> description;
     @FXML
-    private TableColumn<Product,Integer> price;
+    private TableColumn<ProductDTO,Integer> price;
     @FXML
-    private TableColumn<Product,Integer> stock;
+    private TableColumn<ProductDTO,Integer> stock;
     @FXML
-    private TableColumn<Product,String> category;
+    private TableColumn<ProductDTO,String> category;
+    @FXML
+    private Label totalProducts;
+
+    private final ObservableList<ProductDTO> productObservableList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -60,21 +65,21 @@ public class AppController {
 
     private void loadManagerProducts() {
         // Obtener la lista de productos desde el DAO
-        List<Product> products = productDAO.getAll();
-        // Crear una lista observable de productos
-        ObservableList<Product> productObservableList = FXCollections.observableArrayList();
-        for (Product product : products) {
-            productObservableList.add(product);
-        }
-        // Configurar la lista observable en el TableView
+        List<ProductDTO> products = productDAO.getAllProducts();
+        // Creandoo una lista observable de productos
+        productObservableList.addAll(products);
+        // Configurando la lista observable en el TableView
         productsTable.setItems(productObservableList);
-        // Configurar las columnas del TableView
+        // Configuran2 las columnas del TableView
+
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        stock.setCellValueFactory(new PropertyValueFactory<>("stockQty"));
+        category.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+
+        totalProducts.setText(products.size()+"");
     }
 
     private void loadDate() {
