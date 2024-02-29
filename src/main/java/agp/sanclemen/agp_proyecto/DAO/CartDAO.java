@@ -3,54 +3,103 @@ import agp.sanclemen.agp_proyecto.model.Cart;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class CartDAO implements DAO<Cart> {
 
-    private final Connection connection;
+    private final EntityManager entityManager;
 
-    public CartDAO(Connection connection) {
-        this.connection = connection;
+    public CartDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
     public Cart get(long id) {
+        try {
+            return entityManager.find(Cart.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<Cart> getAll() {
+        try {
+            return entityManager.createQuery("from Cart").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void save(Cart cart) {
-
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            entityManager.persist(cart);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Cart cart) {
-
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            entityManager.merge(cart);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Cart cart) {
-
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            entityManager.remove(cart);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public boolean deleteById(long id) {
+        try {
+            Cart cart = get(id);
+            delete(cart);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Long> getAllIds() {
+        try {
+            return entityManager.createQuery("select id from Cart").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void deleteAll() {
-
+        try {
+            EntityTransaction transaction = entityManager.getTransaction();
+            transaction.begin();
+            entityManager.createQuery("delete from Cart").executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,16 +1,17 @@
 package agp.sanclemen.agp_proyecto.DAO;
 
 import agp.sanclemen.agp_proyecto.model.Product;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 import java.sql.*;
 
 public class ProductDAO implements DAO<Product> {
 
-    private final Connection connection;
+    private final EntityManager entityManager;
 
-    public ProductDAO(Connection connection) {
-        this.connection = connection;
+    public ProductDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ProductDAO implements DAO<Product> {
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Long> getAllIds() {
         return null;
     }
 

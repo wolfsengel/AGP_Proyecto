@@ -1,16 +1,17 @@
 package agp.sanclemen.agp_proyecto.DAO;
 
 import agp.sanclemen.agp_proyecto.model.CartItem;
+import jakarta.persistence.EntityManager;
 
 import java.sql.*;
 import java.util.List;
 
 public class CartItemDAO implements DAO<CartItem> {
 
-    private final Connection connection;
+    private final EntityManager entityManager;
 
-    public CartItemDAO(Connection connection) {
-        this.connection = connection;
+    public CartItemDAO(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class CartItemDAO implements DAO<CartItem> {
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Long> getAllIds() {
         return null;
     }
 

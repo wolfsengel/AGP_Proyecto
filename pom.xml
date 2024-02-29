@@ -98,7 +98,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>agp.sanclemen.agp_proyecto/agp.sanclemen.agp_proyecto.view.HelloApplication</mainClass>
+              <mainClass>agp.sanclemen.agp_proyecto/agp.sanclemen.agp_proyecto.view.CartApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

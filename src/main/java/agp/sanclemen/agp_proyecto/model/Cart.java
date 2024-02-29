@@ -10,7 +10,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
@@ -22,11 +22,11 @@ public class Cart {
     public Cart() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

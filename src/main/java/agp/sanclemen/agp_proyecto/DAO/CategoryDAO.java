@@ -83,7 +83,7 @@ public class CategoryDAO implements DAO<Category> {
     }
 
     @Override
-    public List<Integer> getAllIds() {
+    public List<Long> getAllIds() {
         try {
             return entityManager.createQuery("select id from Category").getResultList();
         } catch (Exception e) {
