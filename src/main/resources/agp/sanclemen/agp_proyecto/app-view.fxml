@@ -19,7 +19,7 @@
               </ToolBar>
             </top>
           <center>
-              <TableView fx:id="clientTable" BorderPane.alignment="CENTER">
+              <TableView fx:id="productsTable" BorderPane.alignment="CENTER">
                   <columns>
                       <TableColumn fx:id="id" prefWidth="33.0" text="ID" />
                       <TableColumn fx:id="name" prefWidth="75.0" text="NAME" />
@@ -46,9 +46,9 @@
                 <ToolBar BorderPane.alignment="CENTER">
                     <items>
                         <Label text="Cart: " />
-                        <ComboBox fx:id="cart" prefWidth="150.0" promptText="Cart" />
+                        <ComboBox fx:id="cartsComboBox" prefWidth="150.0" promptText="Cart" />
                         <Label text="Date: "/>
-                        <Label fx:id="date" text="00/00/0000"/>
+                        <Label fx:id="dateLabel" text="00/00/0000"/>
                     </items>
                 </ToolBar>
             </top>
@@ -61,10 +61,14 @@
             <bottom>
                 <ToolBar BorderPane.alignment="CENTER">
                     <items>
-                        <Button mnemonicParsing="false" text="Add to the cart" />
+                        <HBox spacing="10">
+                            <Button mnemonicParsing="false" text="Add to the cart"/>
+                            <Button mnemonicParsing="false" text="Save Cart"/>
+                        </HBox>
                     </items>
                 </ToolBar>
             </bottom>
+
         </BorderPane>
     </Tab>
   </tabs>

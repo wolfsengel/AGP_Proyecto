@@ -6,6 +6,15 @@ import jakarta.persistence.EntityManager;
 import java.sql.*;
 import java.util.List;
 
+/*
+CREATE TABLE IF NOT EXISTS CART_ITEM (
+    ID INT PRIMARY KEY NOT NULL,
+    CART_ID INT NOT NULL,
+    PRODUCT_ID INT NOT NULL,
+    ITEM_QTY INT NOT NULL,
+    LAST_UPDATED TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    );
+ */
 public class CartItemDAO implements DAO<CartItem> {
 
     private final EntityManager entityManager;

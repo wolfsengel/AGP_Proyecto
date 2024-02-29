@@ -5,6 +5,13 @@ import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
 
+/*
+CREATE TABLE IF NOT EXISTS CART (
+    ID INT PRIMARY KEY NOT NULL,
+    CUSTOMER_ID INT NOT NULL,
+    NAME VARCHAR(50) NOT NULL
+);
+ */
 public class CartDAO implements DAO<Cart> {
 
     private final EntityManager entityManager;

@@ -7,6 +7,13 @@ import jakarta.persistence.TransactionRequiredException;
 import java.sql.*;
 import java.util.List;
 
+/*
+CREATE TABLE IF NOT EXISTS CATEGORY (
+    ID INT PRIMARY KEY NOT NULL,
+    NAME VARCHAR(50) NOT NULL,
+    DESCRIPTION CLOB
+);
+ */
 public class CategoryDAO implements DAO<Category> {
 
     private final EntityManager entityManager;
