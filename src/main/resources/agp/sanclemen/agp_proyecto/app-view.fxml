@@ -12,7 +12,7 @@
           <top>
               <ToolBar BorderPane.alignment="CENTER">
                   <items>
-                      <Button mnemonicParsing="false" text="Add" />
+                      <Button mnemonicParsing="false" text="Add" onMouseClicked="#addNewProduct"/>
                       <Button mnemonicParsing="false" text="Edit" />
                       <Button mnemonicParsing="false" text="Delete" />
                   </items>

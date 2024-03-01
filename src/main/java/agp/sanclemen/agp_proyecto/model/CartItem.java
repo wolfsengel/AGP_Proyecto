@@ -13,7 +13,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-    @JoinColumn(name = "CART_ID", nullable = false)
+    @JoinColumn(name = "CART_ID")
     private Cart cart;
 
     @ManyToOne

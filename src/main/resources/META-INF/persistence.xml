@@ -21,8 +21,8 @@
         <properties>
             <!-- Configuración de conexión a base de datos. H2 en memoria. -->
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
-           <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:C:\Users\angel\IdeaProjects\AGP_Proyecto\src\main\java\agp\sanclemen\agp_proyecto\database\agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />
-            <!--<property name="jakarta.persistence.jdbc.url" value="jdbc:h2:/media/MV-Linux/MaquinasVirtuais/a22angelgp/PepeProject/AGP_Proyecto/src/main/java/agp/sanclemen/agp_proyecto/database/agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />-->
+            <!--<property name="jakarta.persistence.jdbc.url" value="jdbc:h2:C:\Users\angel\IdeaProjects\AGP_Proyecto\src\main\java\agp\sanclemen\agp_proyecto\database\agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />-->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:/media/MV-Linux/MaquinasVirtuais/a22angelgp/PepeProject/AGP_Proyecto/src/main/java/agp/sanclemen/agp_proyecto/database/agp_proyecto;DATABASE_TO_UPPER=FALSE;FILE_LOCK=NO;DB_CLOSE_DELAY=-1" />
            <!--            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1" />-->
             <property name="jakarta.persistence.jdbc.user" value="" />
             <property name="jakarta.persistence.jdbc.password" value="" />
