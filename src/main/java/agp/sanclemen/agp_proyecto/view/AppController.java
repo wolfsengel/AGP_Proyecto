@@ -176,6 +176,35 @@ public class AppController {
             } else {
                 // Save the product in the database
                 productDAO.save(product);
+                // Empty the table
+                productObservableList.clear();
+                // Reload the products
+                loadManagerProducts();
+            }
+        }
+    }
+
+    // Elimina un producto de la tabla
+    @FXML
+    public void deleteProduct(){
+        // Get the selected product
+        ProductDTO product = productsTable.getSelectionModel().getSelectedItem();
+        Product productToDelete = productDAO.get(product.getId());
+        // If the user selected a product
+        if (product != null) {
+            // Create a confirmation alert
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Product");
+            alert.setHeaderText("Delete the product: "+product.getName()+"?");
+            alert.setContentText("Are you sure you want to delete the product?");
+            // Show the alert and wait for the user to close it
+            alert.showAndWait();
+            // If the user clicked OK
+            if (alert.getResult() == ButtonType.OK) {
+                // Delete the product from the database
+                productDAO.delete(productToDelete);
+                // Empty the table
+                productObservableList.clear();
                 // Reload the products
                 loadManagerProducts();
             }

@@ -14,7 +14,7 @@
                   <items>
                       <Button mnemonicParsing="false" text="Add" onMouseClicked="#addNewProduct"/>
                       <Button mnemonicParsing="false" text="Edit" />
-                      <Button mnemonicParsing="false" text="Delete" />
+                      <Button mnemonicParsing="false" text="Delete" onMouseClicked="#deleteProduct"/>
                   </items>
               </ToolBar>
             </top>
