@@ -14,8 +14,8 @@ public class CartItem {
     @Column(name = "ID")
     private long id;
     @ManyToOne
-    @JoinColumn(name = "CART_ID")
-    private Cart cart;
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer cart;
 
     @ManyToOne
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
@@ -35,11 +35,11 @@ public class CartItem {
         this.id = id;
     }
 
-    public Cart getCart() {
+    public Customer getCart() {
         return cart;
     }
 
-    public void setCart(Cart cart) {
+    public void setCart(Customer cart) {
         this.cart = cart;
     }
 

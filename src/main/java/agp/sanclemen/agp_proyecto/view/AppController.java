@@ -22,7 +22,6 @@ public class AppController {
     private final ProductDAO productDAO = new ProductDAO(entityManager);
     private final CategoryDAO categoryDAO = new CategoryDAO(entityManager);
     private final CustomerDAO customerDAO = new CustomerDAO(entityManager);
-    private final CartDAO cartDAO = new CartDAO(entityManager);
     private final CartItemDAO cartItemDAO = new CartItemDAO(entityManager);
 
     // FXML stuff
@@ -124,8 +123,23 @@ public class AppController {
         // Crear una lista observable de nombres de productos
         ObservableList<String> productNames = FXCollections.observableArrayList();
         for (ProductDTO product : products) {
-            productNames.add(product.getName() + " - " + product.getPrice());
+            productNames.add(product.getName() + " - " + product.getPrice() + " - " + product.getLastUpdated());
         }
+        // Tooltip para los productos cuando se pasa el mouse por encima
+        productsList.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.isEmpty()) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    Tooltip tooltip = new Tooltip();
+                    tooltip.setText(products.get(getIndex()).getDescription());
+                    setTooltip(tooltip);
+                }
+            }
+        });
         // Configurar la lista observable en el ListView
         productsList.setItems(productNames);
     }
@@ -179,8 +193,6 @@ public class AppController {
                 loadManagerProducts();
                 // Empty the list in the client view
                 productsList.getItems().clear();
-                // Load the products in the client view
-                loadProducts();
             }
         }
     }
@@ -241,8 +253,6 @@ public class AppController {
                     loadManagerProducts();
                     // Empty the list in the client view
                     productsList.getItems().clear();
-                    // Load the products in the client view
-                    loadProducts();
                 }
             }
         }else{
@@ -288,8 +298,6 @@ public class AppController {
                 loadManagerProducts();
                 // Empty the list in the client view
                 productsList.getItems().clear();
-                // Load the products in the client view
-                loadProducts();
             }
         } else {
             // alert the user that the product was not selected
@@ -335,7 +343,7 @@ public class AppController {
                 CartItem cartItem = new CartItem();
                 cartItem.setItemQty(Integer.parseInt(quantity.getText()));
                 cartItem.setLastUpdated(new java.sql.Date(System.currentTimeMillis()));
-                cartItem.setCart(cartDAO.get(customer.getId()));
+                cartItem.setCart(customer);
                 cartItem.setProduct(productsToChoose.get(products.getSelectionModel().getSelectedIndex()));
                 // Save the product in the database
                 cartItemDAO.save(cartItem);

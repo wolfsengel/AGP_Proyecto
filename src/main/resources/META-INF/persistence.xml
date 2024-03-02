@@ -11,7 +11,6 @@
         </description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Clases que se van a persistir-->
-        <class>agp.sanclemen.agp_proyecto.model.Cart</class>
         <class>agp.sanclemen.agp_proyecto.model.CartItem</class>
         <class>agp.sanclemen.agp_proyecto.model.Product</class>
         <class>agp.sanclemen.agp_proyecto.model.Customer</class>

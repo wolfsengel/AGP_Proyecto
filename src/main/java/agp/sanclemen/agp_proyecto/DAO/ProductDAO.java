@@ -138,8 +138,7 @@ public class ProductDAO implements DAO<Product> {
                             from Product p
                             join Category c on p.category.id = c.id
                             join CartItem ci on p.id = ci.product.id
-                            join Cart ca on ci.cart.id = ca.id
-                            join Customer cu on ca.customer.id = cu.id
+                            join Customer cu on ci.cart.id = cu.id
                             where cu.id = :id
                             group by p.id
                         """, ProductDTO.class).setParameter("id", id).getResultList();

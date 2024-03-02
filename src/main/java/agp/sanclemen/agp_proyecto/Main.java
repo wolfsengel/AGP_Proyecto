@@ -1,6 +1,5 @@
 package agp.sanclemen.agp_proyecto;
 
-import agp.sanclemen.agp_proyecto.DAO.CartDAO;
 import agp.sanclemen.agp_proyecto.DAO.CartItemDAO;
 import agp.sanclemen.agp_proyecto.DAO.CustomerDAO;
 import agp.sanclemen.agp_proyecto.DAO.ProductDAO;
@@ -23,16 +22,7 @@ public class Main {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            CartDAO cartDAO = new CartDAO(entityManager);
-            CartItemDAO cartItemDAO = new CartItemDAO(entityManager);
-            ProductDAO productDAO = new ProductDAO(entityManager);
-            CartItem testcartitem = new CartItem();
-            testcartitem.setLastUpdated(new Date(System.currentTimeMillis()));
-            testcartitem.setItemQty(1);
-            testcartitem.setCart(cartDAO.get(1));
-            testcartitem.setProduct(productDAO.get(1));
-            cartItemDAO.save(testcartitem);
-            System.out.println("CartItem saved: " + testcartitem);
+
 
         } finally {
             // Cerrar el EntityManager

@@ -11,6 +11,7 @@
               <ToolBar BorderPane.alignment="CENTER">
                   <items>
                       <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Products" />
+                      <Separator orientation="VERTICAL" />
                       <Button mnemonicParsing="false" onMouseClicked="#addNewProduct" text="Add" />
                       <Button mnemonicParsing="false" onMouseClicked="#editProduct" text="Edit" />
                       <Button mnemonicParsing="false" onMouseClicked="#deleteProduct" text="Delete" />
