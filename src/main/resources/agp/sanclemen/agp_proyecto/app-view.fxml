@@ -3,18 +3,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.14-internal"
-         xmlns:fx="http://javafx.com/fxml/1" fx:controller="agp.sanclemen.agp_proyecto.view.AppController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agp.sanclemen.agp_proyecto.view.AppController">
   <tabs>
     <Tab text="Manager">
       <BorderPane>
           <top>
               <ToolBar BorderPane.alignment="CENTER">
                   <items>
-                      <Button mnemonicParsing="false" text="Add" onMouseClicked="#addNewProduct"/>
-                      <Button mnemonicParsing="false" text="Edit" />
-                      <Button mnemonicParsing="false" text="Delete" onMouseClicked="#deleteProduct"/>
+                      <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Products" />
+                      <Button mnemonicParsing="false" onMouseClicked="#addNewProduct" text="Add" />
+                      <Button mnemonicParsing="false" onMouseClicked="#editProduct" text="Edit" />
+                      <Button mnemonicParsing="false" onMouseClicked="#deleteProduct" text="Delete" />
                   </items>
               </ToolBar>
             </top>
@@ -45,25 +44,24 @@
             <top>
                 <ToolBar BorderPane.alignment="CENTER">
                     <items>
-                        <Label text="Cart: " />
-                        <ComboBox fx:id="cartsComboBox" prefWidth="150.0" promptText="Cart" />
-                        <Label text="Date: "/>
-                        <Label fx:id="dateLabel" text="00/00/0000"/>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Purchase History" />
+                        <Separator orientation="VERTICAL" />
+                        <Label text="Client: " />
+                        <ComboBox fx:id="cartsComboBox" prefWidth="150.0" promptText="Client" />
+                        <Button mnemonicParsing="false" onMouseClicked="#loadProducts" text="Search" />
+                        <Label text="Current Date: " />
+                        <Label fx:id="dateLabel" text="00/00/0000" />
                     </items>
                 </ToolBar>
             </top>
-            <left>
-                <ListView fx:id="productsList" BorderPane.alignment="CENTER"/>
-            </left>
             <center>
-                <ListView fx:id="buyList" BorderPane.alignment="CENTER" />
+                <ListView fx:id="productsList" BorderPane.alignment="CENTER" />
             </center>
             <bottom>
                 <ToolBar BorderPane.alignment="CENTER">
                     <items>
                         <HBox spacing="10">
-                            <Button mnemonicParsing="false" text="Add to the cart"/>
-                            <Button mnemonicParsing="false" text="Save Cart"/>
+                            <Button mnemonicParsing="false" onMouseClicked="#addProductToClientsHistory" text="Add to the cart" />
                         </HBox>
                     </items>
                 </ToolBar>

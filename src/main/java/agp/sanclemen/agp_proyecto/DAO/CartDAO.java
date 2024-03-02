@@ -109,4 +109,13 @@ public class CartDAO implements DAO<Cart> {
             e.printStackTrace();
         }
     }
+
+    public List<Cart> getCartsInCartItem() {
+        try {
+            return entityManager.createQuery("select distinct cart from CartItem").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

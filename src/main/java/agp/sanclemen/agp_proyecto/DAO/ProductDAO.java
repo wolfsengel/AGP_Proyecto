@@ -112,7 +112,7 @@ public class ProductDAO implements DAO<Product> {
 
     public List<ProductDTO> getAllProducts() {
         try {
-            // Query para todos los productos y la suma de ellos para el dto
+            // Query para todos los productos DTO
             return entityManager.createQuery(
                     """
                             select new agp.sanclemen.agp_proyecto.DTO.ProductDTO(p.id, p.name,
@@ -121,6 +121,28 @@ public class ProductDAO implements DAO<Product> {
                             join Category c on p.category.id = c.id
                             group by p.id
                         """, ProductDTO.class).getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<ProductDTO> getProductsByClient(long id){
+        try {
+            // Query para todos los productos por cliente
+            return entityManager.createQuery(
+                    """
+                            select new agp.sanclemen.agp_proyecto.DTO.ProductDTO(p.id, p.name,
+                            p.description, p.price, p.stockQty,p.lastUpdated, c.name, c.description)
+                            from Product p
+                            join Category c on p.category.id = c.id
+                            join CartItem ci on p.id = ci.product.id
+                            join Cart ca on ci.cart.id = ca.id
+                            join Customer cu on ca.customer.id = cu.id
+                            where cu.id = :id
+                            group by p.id
+                        """, ProductDTO.class).setParameter("id", id).getResultList();
 
         } catch (Exception e) {
             e.printStackTrace();

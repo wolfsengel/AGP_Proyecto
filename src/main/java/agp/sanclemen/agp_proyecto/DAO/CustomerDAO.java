@@ -1,5 +1,6 @@
 package agp.sanclemen.agp_proyecto.DAO;
 
+import agp.sanclemen.agp_proyecto.DTO.CustomerDTO;
 import agp.sanclemen.agp_proyecto.model.Customer;
 import jakarta.persistence.EntityManager;
 
