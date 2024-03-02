@@ -18,3 +18,31 @@ realizar las siguientes acciones:
 - Eliminar productos del carrito de la compra.
 - Ver el historial de pedidos realizados por un cliente.
 - Realizar un pedido de un producto, indicando quien lo hace y cuantos productos se quieren.
+
+## Diagrama de Base de Datos para Comercio Electrónico  
+![Diagrama de Base de Datos](src/main/resources/IMG/ER_Diagram.png)  
+### Tablas:   
+
+1. **PRODUCT**: Representa los productos disponibles en la tienda en línea. Contiene atributos como `product_id`, `name`, `description`, `price`, y `stock_quantity`.
+
+2. **CATEGORY**: Almacena las categorías a las que pertenecen los productos. Tiene campos como `category_id` y `category_name`.
+
+3. **CART_ITEM**: Registra los elementos seleccionados por los clientes en su carrito de compras. Incluye atributos como `cart_item_id`, `product_id`, `quantity`, y `total_price`.
+
+4. **CUSTOMER**: Mantiene información sobre los clientes registrados. Contiene campos como `customer_id`, `first_name`, `last_name`, `email`, y `shipping_address`.
+
+### **Relaciones:**
+
+- **PRODUCT** y **CATEGORY**: Relación de muchos a uno. Un producto puede pertenecer a una sola categoría, pero una categoría puede tener varios productos.
+
+- **CART_ITEM** y **PRODUCT**: Relación de muchos a uno. Un elemento del carrito está asociado a un único producto.
+
+- **CART_ITEM** y **CUSTOMER**: Relación de muchos a uno. Un elemento del carrito pertenece a un cliente específico.
+
+### **Posibles Funcionalidades Adicionales:**
+
+- **Descuentos y Promociones**: Se podrían implementar tablas adicionales para gestionar descuentos, cupones y promociones aplicables a los productos.
+
+- **Seguridad y Autenticación**: Para proteger los datos de los clientes, se podría incorporar una tabla para almacenar credenciales de inicio de sesión y roles de usuario.
+
+Este diseño de base de datos proporciona una estructura sólida para una plataforma de comercio electrónico, permitiendo la gestión eficiente de productos, pedidos y clientes.
