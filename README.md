@@ -102,7 +102,17 @@ Desde aquí podemos ver los pedidos realizados por el cliente, así como la fech
 ![Ventana Principal](src/main/resources/IMG/clientes4.png)
 
 > Realizar pedido para el cliente seleccionado: 
-![Ventana Principal](src/main/resources/IMG/clientes5.png)
+![Ventana Principal](src/main/resources/IMG/clientes5.png)  
+
+
+## **Instalación y Configuración:**
+Para ejecutar la aplicación, es tan solo necesario modificar la ruta  de  la base de datos en el archivo `persistence.xml`
+y ejecutar el archivo `CartApplication.java` que se encuentra en el paquete `agp/sanclemen/agp_proyecto/view/CartApplication.java`.
+  
+```xml
+<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./src/main/resources/DB/cart_db"/>
+```
+
 
 
 
