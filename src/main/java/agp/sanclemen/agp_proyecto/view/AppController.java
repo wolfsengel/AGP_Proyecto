@@ -19,7 +19,7 @@ public class AppController {
 
     // DAO's & EntityManager
     EntityManager entityManager = EntityManagerFactorySingleton.getEntityManagerFactory().createEntityManager();
-    private final DAO<ProductDTO> productDAO = new ProductDAO(entityManager);
+    private final DAO_DTO<Product, ProductDTO> productDAO = new ProductDAO(entityManager);
     private final DAO<Category> categoryDAO = new CategoryDAO(entityManager);
     private final DAO<Customer> customerDAO = new CustomerDAO(entityManager);
     private final DAO<CartItem> cartItemDAO = new CartItemDAO(entityManager);
@@ -66,7 +66,7 @@ public class AppController {
     // Carga la tabla y la suma de productos
     private void loadManagerProducts() {
         // Obtener la lista de productos desde el DAO
-        List<ProductDTO> products = productDAO.getAllProducts();
+        List<ProductDTO> products = productDAO.getAllDTO();
         // Creandoo una lista observable de productos
         productObservableList.addAll(products);
         // Configurando la lista observable en el TableView
@@ -175,7 +175,6 @@ public class AppController {
         if (alert.getResult() == ButtonType.OK) {
             // Create a new product
             Product product = new Product();
-            product.setId(null);
             setFields(name, description, price, stock, category, categories, product);
             // Check if the user filled all the fields
             if (name.getText() == null || description.getText() == null || price.getText() == null || stock.getText() == null || category.getSelectionModel().getSelectedItem() == null){

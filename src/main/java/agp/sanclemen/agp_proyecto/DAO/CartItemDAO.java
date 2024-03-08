@@ -1,6 +1,5 @@
 package agp.sanclemen.agp_proyecto.DAO;
 
-import agp.sanclemen.agp_proyecto.DTO.CartItemDTO;
 import agp.sanclemen.agp_proyecto.model.CartItem;
 import jakarta.persistence.EntityManager;
 

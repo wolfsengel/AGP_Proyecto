@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS PRODUCT (
     CATEGORY_ID INT NOT NULL
 );
  */
-public class ProductDAO implements DAO<ProductDTO> {
+public class ProductDAO implements DAO_DTO<Product, ProductDTO> {
 
     private final EntityManager entityManager;
 
@@ -27,9 +27,9 @@ public class ProductDAO implements DAO<ProductDTO> {
     }
 
     @Override
-    public ProductDTO get(long id) {
+    public Product get(long id) {
         try {
-            return entityManager.find(ProductDTO.class, id);
+            return entityManager.find(Product.class, id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,7 +37,17 @@ public class ProductDAO implements DAO<ProductDTO> {
     }
 
     @Override
-    public void save(ProductDTO product) {
+    public List<Product> getAll(){
+        try {
+            return entityManager.createQuery("from Product").getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void save(Product product) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(product);
@@ -48,7 +58,7 @@ public class ProductDAO implements DAO<ProductDTO> {
     }
 
     @Override
-    public void update(ProductDTO product) {
+    public void update(Product product) {
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(product);
@@ -59,7 +69,7 @@ public class ProductDAO implements DAO<ProductDTO> {
     }
 
     @Override
-    public void delete(ProductDTO product) {
+    public void delete(Product product) {
         try {
             entityManager.getTransaction().begin();
             entityManager.remove(product);
@@ -72,7 +82,7 @@ public class ProductDAO implements DAO<ProductDTO> {
     @Override
     public boolean deleteById(long id) {
         try {
-            ProductDTO product = get(id);
+            Product product = get(id);
             delete(product);
             return true;
         } catch (Exception e) {
@@ -101,7 +111,7 @@ public class ProductDAO implements DAO<ProductDTO> {
     }
 
     @Override
-    public List<ProductDTO> getAll() {
+    public List<ProductDTO> getAllDTO() {
         try {
             // Query para todos los productos DTO
             return entityManager.createQuery(
@@ -119,6 +129,7 @@ public class ProductDAO implements DAO<ProductDTO> {
         return null;
     }
 
+    @Override
     public List<ProductDTO> getProductsByClient(long id){
         try {
             // Query para todos los productos por cliente
