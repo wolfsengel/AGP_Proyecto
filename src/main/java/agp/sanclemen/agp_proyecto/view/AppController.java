@@ -19,10 +19,10 @@ public class AppController {
 
     // DAO's & EntityManager
     EntityManager entityManager = EntityManagerFactorySingleton.getEntityManagerFactory().createEntityManager();
-    private final ProductDAO productDAO = new ProductDAO(entityManager);
-    private final CategoryDAO categoryDAO = new CategoryDAO(entityManager);
-    private final CustomerDAO customerDAO = new CustomerDAO(entityManager);
-    private final CartItemDAO cartItemDAO = new CartItemDAO(entityManager);
+    private final DAO<ProductDTO> productDAO = new ProductDAO(entityManager);
+    private final DAO<Category> categoryDAO = new CategoryDAO(entityManager);
+    private final DAO<Customer> customerDAO = new CustomerDAO(entityManager);
+    private final DAO<CartItem> cartItemDAO = new CartItemDAO(entityManager);
 
     // FXML stuff
     @FXML
