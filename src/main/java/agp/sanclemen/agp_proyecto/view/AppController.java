@@ -10,8 +10,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +31,7 @@ public class AppController {
     private final DAO<Category> categoryDAO = new CategoryDAO(entityManager);
     private final DAO<Customer> customerDAO = new CustomerDAO(entityManager);
     private final DAO<CartItem> cartItemDAO = new CartItemDAO(entityManager);
+    private final DAO<ProductPhoto> productPhotoDAO = new ProductPhotoDAO(entityManager);
 
     // FXML stuff
     @FXML
@@ -156,35 +165,72 @@ public class AppController {
         for (Category c : categories) {
             category.getItems().add(c.getName());
         }
+        ImageView imageView = new ImageView();
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+        Button button = new Button("Add Image");
+        button.setOnAction(event -> {
+            File file = new FileChooser().showOpenDialog(null);
+            if (file != null) {
+                try {
+                    byte[] photoBytes = Files.readAllBytes(file.toPath());
+                    // Convertir el byte array a una imagen
+                    ByteArrayInputStream inputStream = new ByteArrayInputStream(photoBytes);
+                    Image image = new Image(inputStream);
+                    // Configurar la imagen en el ImageView
+                    imageView.setImage(image);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         // Adding the form to the alert
-        alert.getDialogPane().setContent(new VBox(8, name, description, price, stock, category));
+        alert.getDialogPane().setContent(new VBox(8, name, description, price, stock, category, imageView, button));
         // Show the alert and wait for the user to close it
         alert.showAndWait();
         // If the user clicked OK
         if (alert.getResult() == ButtonType.OK) {
-            // Create a new product
-            Product product = new Product();
-            setFields(name, description, price, stock, category, categories, product);
             // Check if the user filled all the fields
-            if (name.getText() == null || description.getText() == null || price.getText() == null || stock.getText() == null || category.getSelectionModel().getSelectedItem() == null){
+            if (name.getText() == null || description.getText() == null || price.getText() == null ||
+                    stock.getText() == null || category.getSelectionModel().getSelectedItem() == null) {
                 Alert error = new Alert(Alert.AlertType.ERROR);
                 error.setTitle("Error");
                 error.setHeaderText("Error adding the product");
                 error.setContentText("Please fill all the fields");
                 error.showAndWait();
             } else {
+                // Create a new product
+                Product product = new Product();
+                setFields(name, description, price, stock, category, categories, product);
+
                 // Save the product in the database
                 productDAO.save(product);
+
+                // Create a new product photo
+                ProductPhoto productPhoto = new ProductPhoto();
+                productPhoto.setProduct(product);
+                Image image = imageView.getImage();
+                if (image != null) {
+                    try {
+                        byte[] photoBytess = Files.readAllBytes(new File(image.getUrl()).toPath());
+                        productPhoto.setPhotoData(photoBytess);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    productPhoto.setPhotoData(new byte[0]);
+                }
                 // Empty the table
                 productObservableList.clear();
+
                 // Reload the products
                 loadManagerProducts();
+
                 // Empty the list in the client view
                 productsList.getItems().clear();
             }
         }
     }
-
     @FXML
     public void editProduct(){
         // Get the selected product
@@ -216,8 +262,46 @@ public class AppController {
                 category.getItems().add(c.getName());
             }
             category.getSelectionModel().select(product.getCategoryName());
+            ImageView imageView = new ImageView();
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            // Image from the byte array of the product photo
+            ProductPhoto prodphot;
+            if (productPhotoDAO.get(product.getId()) != null) {
+                ProductPhoto productPhoto = productPhotoDAO.get(product.getId());
+                // Convertir el byte array a una imagen
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(productPhoto.getPhotoData());
+                Image image = new Image(inputStream);
+                // Configurar la imagen en el ImageView
+                imageView.setImage(image);
+                prodphot = productPhotoDAO.get(product.getId());
+            } else {
+                ProductPhoto productPhoto = new ProductPhoto();
+                productPhoto.setProduct(productDAO.get(product.getId()));
+                productPhoto.setPhotoData(new byte[0]);
+                productPhotoDAO.save(productPhoto);
+                prodphot = productPhotoDAO.get(product.getId());
+            }
+            Button button = new Button("Change Image");
+            button.setOnAction(event -> {
+                File file = new FileChooser().showOpenDialog(null);
+                if (file != null) {
+                    try {
+                        byte[] photoBytes = Files.readAllBytes(file.toPath());
+                        prodphot.setPhotoData(photoBytes);
+                        productPhotoDAO.update(prodphot);
+                        // Convertir el byte array a una imagen
+                        ByteArrayInputStream inputStream = new ByteArrayInputStream(prodphot.getPhotoData());
+                        Image image = new Image(inputStream);
+                        // Configurar la imagen en el ImageView
+                        imageView.setImage(image);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
             // Adding the form to the alert
-            alert.getDialogPane().setContent(new VBox(8, name, description, price, stock, category));
+            alert.getDialogPane().setContent(new VBox(8, name, description, price, stock, category, imageView, button));
             // Show the alert and wait for the user to close it
             alert.showAndWait();
             // If the user clicked OK
@@ -284,8 +368,6 @@ public class AppController {
                 productObservableList.clear();
                 // Reload the products
                 loadManagerProducts();
-                // Empty the list in the client view
-                productsList.getItems().clear();
             }
         } else {
             // alert the user that the product was not selected
@@ -345,6 +427,51 @@ public class AppController {
                 // Load the products in the client view
                 loadProducts();
             }
+        }
+    }
+
+    @FXML
+    public void watchPhotoFromProduct(){
+        // Get the selected product
+        ProductDTO product = productsTable.getSelectionModel().getSelectedItem();
+        // If the user selected a product
+        if (product != null) {
+            // Get the product photo
+            ProductPhoto productPhoto = productPhotoDAO.get(product.getId());
+            // If the product has a photo
+            if (productPhoto != null) {
+                // Convertir el byte array a una imagen
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(productPhoto.getPhotoData());
+                Image image = new Image(inputStream);
+                // Create a new alert
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Product Photo");
+                alert.setHeaderText("Product: "+product.getName());
+                alert.setContentText("The photo of the product");
+                // Create an ImageView
+                ImageView imageView = new ImageView();
+                imageView.setImage(image);
+                imageView.setFitHeight(300);
+                imageView.setFitWidth(300);
+                // Adding the ImageView to the alert
+                alert.getDialogPane().setContent(new VBox(8, imageView));
+                // Show the alert and wait for the user to close it
+                alert.showAndWait();
+            } else {
+                // Create a new alert
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Product Photo");
+                alert.setHeaderText("Product: "+product.getName());
+                alert.setContentText("The product has no photo");
+                // Show the alert and wait for the user to close it
+                alert.showAndWait();
+            }
+        } else {
+            // alert the user that the product was not selected
+            Alert error = new Alert(Alert.AlertType.WARNING);
+            error.setTitle("Error");
+            error.setHeaderText("Please, select a product to watch the photo");
+            error.showAndWait();
         }
     }
 }

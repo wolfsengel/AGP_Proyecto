@@ -23,17 +23,15 @@ realizar las siguientes acciones:
 ![Diagrama de Base de Datos](src/main/resources/IMG/Diagrama_ER.png)  
 ### Tablas:   
 
-1. **PRODUCT**: Representa los productos disponibles en la tienda en línea. Contiene atributos como `product_id`, 
-2. `name`, `description`, `price`, y `stock_quantity`.
+1. **PRODUCT**: Representa los productos disponibles en la tienda en línea. Contiene atributos como `product_id`,`name`, `description`, `price`, y `stock_quantity`.
 
-2. **CATEGORY**: Almacena las categorías a las que pertenecen los productos. Tiene campos como `category_id` y 
-3. `category_name`.
+2. **CATEGORY**: Almacena las categorías a las que pertenecen los productos. Tiene campos como `category_id` y `category_name`.
 
-3. **CART_ITEM**: Registra los elementos seleccionados por los clientes en su carrito de compras. Incluye atributos como 
-4. `cart_item_id`, `product_id`, `quantity`, y `total_price`.
+3. **CART_ITEM**: Registra los elementos seleccionados por los clientes en su carrito de compras. Incluye atributos como `cart_item_id`, `product_id`, `quantity`, y `total_price`.
 
-4. **CUSTOMER**: Mantiene información sobre los clientes registrados. Contiene campos como `customer_id`, `first_name`, 
-5. `last_name`, `email`, y `shipping_address`.
+4. **CUSTOMER**: Mantiene información sobre los clientes registrados. Contiene campos como `customer_id`, `first_name`, `last_name`, `email`, y `shipping_address`.
+5. **PRODUCT_PHOTO**: Almacena las fotos de los productos. Contiene campos como `product_id`  y `photo`.
+
 
 ### **Relaciones:**
 
@@ -43,6 +41,8 @@ realizar las siguientes acciones:
 - **CART_ITEM** y **PRODUCT**: Relación de muchos a uno. Un elemento del carrito está asociado a un único producto.
 
 - **CART_ITEM** y **CUSTOMER**: Relación de muchos a uno. Un elemento del carrito pertenece a un cliente específico.
+
+- **PRODUCT_PHOTO** y **PRODUCT**: Relación de uno a uno. Cada producto puede tener una sola foto
 
 ### **Posibles Funcionalidades Adicionales:**
 
@@ -63,18 +63,26 @@ de herramientas y bibliotecas para crear aplicaciones de escritorio modernas y a
 La ventana principal de la aplicación muestra el catálogo de productos de la tienda, con la opción de ver detalles
 dependiendo de su categoría con tan solo posicionar el ratón encima del producto.  
 
-![Ventana Principal](src/main/resources/IMG/productos1.png)
+![Ventana Principal](src/main/resources/IMG/product1.png)
+![Ventana Principal](src/main/resources/IMG/product7.png)  
+
 Podemos realizar distintas acciones como añadir productos al carrito, eliminar productos del carrito o editar 
 los existentes:  
 
-![Ventana Principal](src/main/resources/IMG/productos2.png)
-> Añadir producto  
 
-![Ventana Principal](src/main/resources/IMG/productos3.png)
-> Editar producto
 
-![Ventana Principal](src/main/resources/IMG/productos4.png)
+> Añadir producto:
+![Ventana Principal](src/main/resources/IMG/product2.png)  
+![Ventana Principal](src/main/resources/IMG/product3.png)
+
+> Editar producto:
+![Ventana Principal](src/main/resources/IMG/product4.png)  
+
 > Eliminar producto
+![Ventana Principal](src/main/resources/IMG/product5.png)
+
+> Ver Producto
+![Ventana Principal](src/main/resources/IMG/product6.png)
 
 ### **Ventana de historial de compras:**
 La ventana de historial de compras muestra los pedidos realizados por un cliente específico. Podemos acceder de manera
@@ -83,16 +91,18 @@ sencilla con tan solo pulsar la pestaña de cliente.
 
 Desde aquí podemos ver los pedidos realizados por el cliente, así como la fecha y el precio de la compra.  
 
-![Ventana Principal](src/main/resources/IMG/clientes2.png)
-> Seleccion de cliente  
 
+> Seleccion de cliente
+![Ventana Principal](src/main/resources/IMG/clientes2.png)  
+
+> Historial de compras del cliente:
 ![Ventana Principal](src/main/resources/IMG/clientes3.png)
-> Historial de compras del cliente
 
+> Posibilidad de realizar un pedido para ese cliente:
 ![Ventana Principal](src/main/resources/IMG/clientes4.png)
-> Posibilidad de realizar un pedido para ese cliente  
 
+> Realizar pedido para el cliente seleccionado: 
 ![Ventana Principal](src/main/resources/IMG/clientes5.png)
-> Realizar pedido para el cliente seleccionado
+
 
 
