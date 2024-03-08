@@ -22,8 +22,9 @@ public class Main {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-
-
+            //mostrar todos los productos
+            ProductDAO productDAO = new ProductDAO(entityManager);
+            productDAO.getAll().forEach(System.out::println);
         } finally {
             // Cerrar el EntityManager
             if (entityManager != null && entityManager.isOpen()) {

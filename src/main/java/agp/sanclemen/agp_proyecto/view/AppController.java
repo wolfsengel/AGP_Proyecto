@@ -116,6 +116,10 @@ public class AppController {
 
     // Carga los productos comprados por el cliente seleccionado en el ComboBox
     public void loadProducts() {
+        // print the index of the selected item
+        System.out.println(cartsComboBox.getSelectionModel().getSelectedIndex());
+        //print the max index of the list
+        System.out.println(cartsComboBox.getItems().size());
         // Get frfon the ComboBox the selected client
         Customer customer = customers.get(cartsComboBox.getSelectionModel().getSelectedIndex());
         // Obtener la lista de productos desde el DAO
@@ -125,21 +129,6 @@ public class AppController {
         for (ProductDTO product : products) {
             productNames.add(product.getName() + " - " + product.getPrice() + " - " + product.getLastUpdated());
         }
-        // Tooltip para los productos cuando se pasa el mouse por encima
-        productsList.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null || item.isEmpty()) {
-                    setText(null);
-                } else {
-                    setText(item);
-                    Tooltip tooltip = new Tooltip();
-                    tooltip.setText(products.get(getIndex()).getDescription());
-                    setTooltip(tooltip);
-                }
-            }
-        });
         // Configurar la lista observable en el ListView
         productsList.setItems(productNames);
     }
@@ -338,8 +327,13 @@ public class AppController {
                 error.setContentText("Please fill all the fields");
                 error.showAndWait();
             } else {
+                // Create a new cart item key
+                CartItemKey cartItemKey = new CartItemKey();
+                cartItemKey.setCustomerId(customer.getId());
+                cartItemKey.setProductId(productsToChoose.get(products.getSelectionModel().getSelectedIndex()).getId());
                 // Create a new cart item
                 CartItem cartItem = new CartItem();
+                cartItem.setId(cartItemKey);
                 cartItem.setItemQty(Integer.parseInt(quantity.getText()));
                 cartItem.setLastUpdated(new java.sql.Date(System.currentTimeMillis()));
                 cartItem.setCustomer(customer);

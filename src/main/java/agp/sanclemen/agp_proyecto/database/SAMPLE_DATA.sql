@@ -59,31 +59,8 @@ VALUES ('Smartphone', 'Latest model with advanced features', 599.99, 50, '2024-0
        ('Bluetooth Speaker', 'Portable Bluetooth speaker with great sound', 49.99, 40, '2024-02-21 08:30:00', 1),
        ('Fitness Tracker', 'Activity tracker with heart rate monitor', 79.99, 30, '2024-02-22 10:45:00', 1);
 
--- Sample data for CART table
-INSERT INTO CART (CUSTOMER_ID, NAME)
-VALUES (1, 'Shopping Cart 1'),
-       (2, 'Shopping Cart 2'),
-       (3, 'Shopping Cart 3'),
-       (4, 'Shopping Cart 4'),
-       (5, 'Shopping Cart 5'),
-       (6, 'Shopping Cart 6'),
-       (7, 'Shopping Cart 7'),
-       (8, 'Shopping Cart 8'),
-       (9, 'Shopping Cart 9'),
-       (10, 'Shopping Cart 10'),
-       (11, 'Shopping Cart 11'),
-       (12, 'Shopping Cart 12'),
-       (13, 'Shopping Cart 13'),
-       (14, 'Shopping Cart 14'),
-       (15, 'Shopping Cart 15'),
-       (16, 'Shopping Cart 16'),
-       (17, 'Shopping Cart 17'),
-       (18, 'Shopping Cart 18'),
-       (19, 'Shopping Cart 19'),
-       (20, 'Shopping Cart 20');
-
 -- Sample data for CART_ITEM table
-INSERT INTO CART_ITEM (CART_ID, PRODUCT_ID, ITEM_QTY, LAST_UPDATED)
+INSERT INTO CART_ITEM (CUSTOMER_ID, PRODUCT_ID, ITEM_QTY, LAST_UPDATED)
 VALUES (1, 2, 3, '2024-02-01 08:30:00'),
        (2, 1, 2, '2024-02-02 10:45:00'),
        (3, 3, 1, '2024-02-03 12:15:00'),

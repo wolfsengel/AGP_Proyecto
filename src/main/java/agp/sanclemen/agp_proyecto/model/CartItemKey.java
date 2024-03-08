@@ -21,8 +21,7 @@ public class CartItemKey implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CartItemKey)) return false;
-        CartItemKey that = (CartItemKey) o;
+        if (!(o instanceof CartItemKey that)) return false;
         return customerId == that.customerId && productId == that.productId;
     }
 
