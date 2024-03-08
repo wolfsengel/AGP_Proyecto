@@ -117,7 +117,7 @@ Para ejecutar la aplicación, es tan solo necesario modificar la ruta  de  la ba
 y ejecutar el archivo `CartApplication.java` que se encuentra en el paquete `agp/sanclemen/agp_proyecto/view/CartApplication.java`.
   
 ```xml
-<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:./src/main/resources/DB/cart_db"/>
+<property name="javax.persistence.jdbc.url" value="jdbc:h2:file:.src/main/java/agp/sanclemen/agp_proyecto/database/agp_proyecto"/>
 ```
 
 
