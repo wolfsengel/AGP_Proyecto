@@ -1,23 +1,31 @@
 package agp.sanclemen.agp_proyecto.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "CART_ITEM")
 public class CartItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
-    @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer cart;
+    @EmbeddedId
+    private CartItemKey id;
 
     @ManyToOne
+    @MapsId("customerId")
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private Customer customer;
+
+    @ManyToOne
+    @MapsId("productId")
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Product product;
 
@@ -27,43 +35,4 @@ public class CartItem {
     @Column(name = "LAST_UPDATED", nullable = false)
     private Date lastUpdated;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Customer getCart() {
-        return cart;
-    }
-
-    public void setCart(Customer cart) {
-        this.cart = cart;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getItemQty() {
-        return itemQty;
-    }
-
-    public void setItemQty(int itemQty) {
-        this.itemQty = itemQty;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
 }

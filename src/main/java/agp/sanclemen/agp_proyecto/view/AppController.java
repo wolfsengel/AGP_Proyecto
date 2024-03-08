@@ -342,7 +342,7 @@ public class AppController {
                 CartItem cartItem = new CartItem();
                 cartItem.setItemQty(Integer.parseInt(quantity.getText()));
                 cartItem.setLastUpdated(new java.sql.Date(System.currentTimeMillis()));
-                cartItem.setCart(customer);
+                cartItem.setCustomer(customer);
                 cartItem.setProduct(productsToChoose.get(products.getSelectionModel().getSelectedIndex()));
                 // Save the product in the database
                 cartItemDAO.save(cartItem);
