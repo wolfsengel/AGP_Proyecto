@@ -20,7 +20,7 @@ realizar las siguientes acciones:
 - Realizar un pedido de un producto, indicando quien lo hace y cuantos productos se quieren.
 
 ## Diagrama de Base de Datos para Comercio Electrónico  
-![Diagrama de Base de Datos](src/main/resources/IMG/ER_Diagram.png)  
+![Diagrama de Base de Datos](src/main/resources/IMG/Diagrama_ER.png)  
 ### Tablas:   
 
 1. **PRODUCT**: Representa los productos disponibles en la tienda en línea. Contiene atributos como `product_id`, 
