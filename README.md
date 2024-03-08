@@ -107,9 +107,11 @@ Desde aquí podemos ver los pedidos realizados por el cliente, así como la fech
 
 ## **Instalación y Configuración:**
 
-Debido al espacio de almacenamiento, la base de datos se descarga desde:   
+Debido al espacio de almacenamiento, la base de datos se descarga desde el siguiente enlace:   
 
-[Descargar Base de Datos y Código SQL](https://drive.google.com/file/d/176MF68O3Iw7mfduDsrWFWsTgxjWdQADd/view?usp=sharing)  
+[Descargar Base de Datos y Código SQL](https://drive.google.com/file/d/176MF68O3Iw7mfduDsrWFWsTgxjWdQADd/view?usp=sharing)
+
+Una vez descargado, descomprimir el archivo y copiar la carpeta `agp/sanclemen/agp_proyecto/database`.
 
 Para ejecutar la aplicación, es tan solo necesario modificar la ruta  de  la base de datos en el archivo `persistence.xml`
 y ejecutar el archivo `CartApplication.java` que se encuentra en el paquete `agp/sanclemen/agp_proyecto/view/CartApplication.java`.
